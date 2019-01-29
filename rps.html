@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+
+  <div>
+    <p id="directions-text">Press r, p, or s to start the game!</p>
+    <p id="userchoice-text"></p>
+    <p id="computerchoice-text"></p>
+    <p id="wins-text"></p>
+    <p id="losses-text"></p>
+    <p id="ties-text"></p>
+  </div>
+
+  <script type="text/javascript">
+  var computerChoices = ["r", "p", "s"];
+
+  var wins = 0;
+  var losses = 0;
+  var ties = 0;
+
+  var directionText = document.getElementById("directions-text");
+  var userChoiceText = document.getElementById("userchoice-text");
+  var computerChoiceText = document.getElementById("computerchoice-text");
+  var winsText = document.getElementById("wins-text");
+  var lossesText =document.getElementById("losses-text");
+  var tiesText = document.getElementById("ties-text");
+
+  document.onkeyup = function(event) {
+    
+    var userGuess = event.key;
+    var computerGuess = computerChoices[Math.floor(Math.random()*computerChoices.length)];
+
+    if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {
+      if ((userGuess === "r" && computerGuess === "s") ||
+      (userGuess === "s" && computerGuess === "p") ||
+      (userGuess === "p" && computerGuess === "r")) {
+        wins++;
+      } else if (userGuess === computerGuess) {
+        ties++;
+      } else {
+        losses++;
+      }
+
+      directionText.textContent = "";
+
+      userChoiceText.textContent = "you chose: " + userGuess;
+      computerChoiceText.textContent = "the computer chose: " + computerGuess;
+      winsText.textContent = "wins: " + wins;
+      lossesText.textContent = "losses: " + losses;
+      tiesText.textContent = "ties: " + ties;
+    }
+  }
+  </script>
+  
+</body>
+</html>
